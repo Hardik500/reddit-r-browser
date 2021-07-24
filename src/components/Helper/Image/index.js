@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 
 const Image = props => {
-    console.log(props);
     const [isLoaded, setIsLoaded] = React.useState(false);
 
     return (
@@ -26,6 +25,7 @@ const Image = props => {
                 alt={props.alt}
                 src={props.src}
             />
+            <div className="top-center">{props.title}</div>
         </React.Fragment>
     );
 };

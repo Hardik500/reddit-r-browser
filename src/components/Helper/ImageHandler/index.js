@@ -1,3 +1,5 @@
+import './style.css'
+
 import React from "react";
 import LazyLoad from 'react-lazyload';
 
@@ -38,13 +40,12 @@ export default function Photo(props) {
     } = photo;
 
     return (
-        <div 
+        <div
             onMouseEnter={() => handleHover(index)}
             onMouseLeave={() => handleHover(null)}
             key={index}
-            className="image-container"
         >
-            <LazyLoad height={height} width={width} once={true} offset={350}>
+            <LazyLoad height={height} width={width} once={true} offset={350} className="image-container">
                 <Image {...photo} alt={src} onError={addDefaultSrc}/>
             </LazyLoad>
         </div>

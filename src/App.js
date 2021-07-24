@@ -50,6 +50,7 @@ function App() {
           renderImage={(props) =>
             ImageHandler({ ...props, hovered, handleHover})
           }
+          margin={0}
           photos={apiData} />
       </InfiniteScroll>
     </div>

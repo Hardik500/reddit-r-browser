@@ -19,7 +19,8 @@ export const photosReducer = (photos) => {
 
         const {
             url: src,
-            thumbnail
+            thumbnail,
+            title
         } = photo;
 
         if(photo?.preview?.images[0]?.source && shouldIncludeUrl(src)){
@@ -28,7 +29,7 @@ export const photosReducer = (photos) => {
                 width
             } = photo?.preview?.images[0]?.source;
             
-            photosArray.push({height, width, src, thumbnail})
+            photosArray.push({height, width, src, thumbnail, title})
         }
 
     }
