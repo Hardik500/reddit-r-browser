@@ -18,6 +18,7 @@ export default function Photo(props) {
         photo,
         direction,
         handleHover,
+        filterTitleText,
         top,
         left,
     } = props;
@@ -37,17 +38,22 @@ export default function Photo(props) {
         src,
         height,
         width,
+        title,
     } = photo;
 
-    return (
-        <div
-            onMouseEnter={() => handleHover(index)}
-            onMouseLeave={() => handleHover(null)}
-            key={index}
-        >
-            <LazyLoad height={height} width={width} once={true} offset={350} className="image-container">
-                <Image {...photo} alt={src} onError={addDefaultSrc}/>
-            </LazyLoad>
-        </div>
-    );
+    if(title?.toLowerCase()?.includes(filterTitleText?.toLowerCase())){
+        return (
+            <div
+                onMouseEnter={() => handleHover(index)}
+                onMouseLeave={() => handleHover(null)}
+                key={index}
+            >
+                <LazyLoad height={height} width={width} once={true} offset={350} className="image-container">
+                    <Image {...photo} alt={src} onError={addDefaultSrc}/>
+                </LazyLoad>
+            </div>
+        );
+    }
+
+    return null;
 }

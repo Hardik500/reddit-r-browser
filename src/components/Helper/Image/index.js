@@ -18,10 +18,9 @@ const Image = props => {
                 onLoad={() => {
                     setIsLoaded(true);
                 }}
-                className="image full"
+                className={`image full ${isLoaded ? "image-loaded" : "image-not-loaded"}`}
                 width={props.width}
                 height={props.height}
-                style={{ opacity: isLoaded ? 1 : 0, display: isLoaded ? "block" : "none" }}
                 alt={props.alt}
                 src={props.src}
             />

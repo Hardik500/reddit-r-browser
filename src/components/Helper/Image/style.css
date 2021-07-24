@@ -1,11 +1,29 @@
+.image {
+  cursor: pointer;
+}
+
+.image:hover {
+  opacity: 0.5;
+}
+
 .full {
   transition: opacity 400ms ease 250ms;
 }
 
 .thumb {
   filter: blur(20px);
-  transition: visibility 0ms ease 500ms;
+  transition: visibility 0ms ease 250ms;
   visibility: visible;
+}
+
+.image-loaded {
+  opacity: 1;
+  display: block;
+}
+
+.image-not-loaded {
+  opacity: 1;
+  display: "none"
 }
 
 .top-center {

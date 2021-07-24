@@ -10,6 +10,7 @@ import ImageHandler from './components/Helper/ImageHandler';
 function App() {
   const [hovered, setHovered] = useState(null);
   const [apiData, setApiData] = useState([]);
+  const [filterTitleText, setFilterTtitleText] = useState("");
   const [nextPostId, setNextPostId] = useState(null);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ function App() {
     const apiResult =  data.children.map(({data}) => data)
     const imagesData = photosReducer(apiResult);
 
-    const id = apiResult[apiResult.length - 1].name
+    const id = apiResult[apiResult.length - 1]?.name
     
     setNextPostId(id);
     setApiData([...apiData, ...imagesData])
@@ -32,6 +33,14 @@ function App() {
     setHovered(index);
   };
 
+  const handleInputChange = (e) => {
+    const filterText = e.target.value;
+    setFilterTtitleText(filterText);
+    // const tempData = apiData.filter(({title}) => title.toLowerCase().includes(filterText.toLowerCase()))
+    // console.log(tempData);
+    // setApiData(tempData);
+  }
+
   if(apiData.length === 0){
     return (
       <div>Loading...</div>
@@ -40,15 +49,22 @@ function App() {
 
   return (
     <div>
+      <form>
+        <label>
+          Title:
+          <input type="text" name="title" onChange={handleInputChange}/>
+        </label>
+      </form>
+
       <InfiniteScroll
         dataLength={apiData.length}
         next={fetchData}
         loader={<h4>Loading...</h4>}
-        hasMore={true}
+        hasMore={filterTitleText.length ? false : true}
       >
         <Gallery 
           renderImage={(props) =>
-            ImageHandler({ ...props, hovered, handleHover})
+            ImageHandler({ ...props, hovered, handleHover, filterTitleText})
           }
           margin={0}
           photos={apiData} />
