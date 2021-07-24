@@ -1,0 +1,12 @@
+.image {
+}
+  
+.full {
+  transition: opacity 400ms ease 250ms;
+}
+  
+.thumb {
+  filter: blur(20px);
+  transition: visibility 0ms ease 500ms;
+  visibility: visible;
+}
