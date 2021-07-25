@@ -29,7 +29,7 @@ export const photosReducer = (photos) => {
                 width
             } = photo?.preview?.images[0]?.source;
             
-            photosArray.push({height, width, src, thumbnail, title})
+            photosArray.push({data: photo, height, width, src, thumbnail, title})
         }
 
     }

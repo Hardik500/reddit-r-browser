@@ -1,13 +1,15 @@
 import './App.css';
 
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect, useCallback, Suspense } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Gallery from "react-photo-gallery";
 import Modal from 'react-modal';
 
-import { shouldIncludeUrl, photosReducer } from './utils/helper';
+import SearchForm from './components/SearchForm';
 import ImageModal from './components/ImageModal';
 import ImageHandler from './components/Helper/ImageHandler';
+import { ContentLoader, PageLoader } from "./components/Helper/Loader";
+import { shouldIncludeUrl, photosReducer } from './utils/helper';
 
 const customStyles = {
   content: {
@@ -55,51 +57,54 @@ function App() {
     setHovered(index);
   };
   
-  const clickHandler = (index) => {
-    selectTheImage(apiData[index]);
+  const clickHandler = (data) => {
+    selectTheImage(data);
     modalToggle();
   }
 
   const handleInputChange = (e) => {
     const filterText = e.target.value;
     setFilterTtitleText(filterText);
-    // const tempData = apiData.filter(({title}) => title.toLowerCase().includes(filterText.toLowerCase()))
-    // console.log(tempData);
-    // setApiData(tempData);
+
+    if(e.target.value < filterTitleText){
+      const tempData = photosReducer(apiData)
+      setFilteredImageData(tempData);
+    }
+    else{
+      const tempData = filteredImageData.filter(({title}) => title.toLowerCase().includes(filterText.toLowerCase()))
+      setFilteredImageData(tempData);
+    }
   }
 
   const modalToggle = () => {
     setModalVisibility(!modalVisible)
   }
 
-  if(filteredImageData.length === 0){
-    return (
-      <div>Loading...</div>
-    )
-  }
-
   return (
-    <div>
-      <form>
-        <label>
-          Title:
-          <input type="text" name="title" onChange={handleInputChange}/>
-        </label>
-      </form>
+    <div className="body">
+      <h1 className="body--heading1">Reddit r/Pics Browser </h1>
 
-      <InfiniteScroll
-        dataLength={filteredImageData.length}
-        next={fetchData}
-        loader={<h4>Loading...</h4>}
-        hasMore={filterTitleText.length ? false : true}
-      >
-        <Gallery 
-          renderImage={(props) =>
-            ImageHandler({ ...props, hovered, handleHover, clickHandler, filterTitleText})
-          }
-          margin={0}
-          photos={filteredImageData} />
-      </InfiniteScroll>
+      <SearchForm handleInputChange={handleInputChange}/>
+
+      {
+        apiData.length !== 0 && filteredImageData.length === 0 && <div>No Results Found </div>
+      }
+      
+      <Suspense fallback={<PageLoader />}>
+        <InfiniteScroll
+          dataLength={filteredImageData.length}
+          next={fetchData}
+          loader={<ContentLoader />}
+          hasMore={filterTitleText.length ? false : true}
+        >
+          <Gallery 
+            renderImage={(props) =>
+              ImageHandler({ ...props, hovered, handleHover, clickHandler, filterTitleText})
+            }
+            margin={0}
+            photos={filteredImageData} />
+        </InfiniteScroll>
+      </Suspense>
 
       <Modal isOpen={modalVisible} onRequestClose={modalToggle} style={customStyles}>
         <ImageModal photo={selectedImage}/>

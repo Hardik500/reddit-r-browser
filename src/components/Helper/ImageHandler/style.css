@@ -1,14 +1,14 @@
-.image-container {
+.image--container {
     position: relative;
     text-align: center;
     transition: opacity 400ms ease 150ms;
 }
 
-.image-container:hover {
+.image--container:hover {
     opacity: 0.75;
 }
 
-.top-center {
+.image--container--position--top-center {
     position: absolute;
     top: 0px;
     width: 100%;
@@ -21,7 +21,7 @@
     border-right: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-.top-center:hover {
+.image--container--position--top-center:hover {
     overflow: visible;
     max-height: 100%;
 }

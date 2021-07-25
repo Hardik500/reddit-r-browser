@@ -4,11 +4,11 @@
   height: auto;
 }
 
-.full {
+.image--full {
   transition: opacity 400ms ease 250ms;
 }
 
-.thumb {
+.image--thumb {
   filter: blur(20px);
   transition: visibility 0ms ease 250ms;
   visibility: visible;
@@ -19,7 +19,17 @@
   display: block;
 }
 
-.image-not-loaded {
+.image--not-loaded {
   opacity: 1;
-  display: "none"
+  display: none;
+}
+
+.image--thumb-loaded {
+  visibility: hidden;
+  display: none;
+}
+
+.image--thumb--not-loaded {
+  visibility: visible;
+  display: block;
 }

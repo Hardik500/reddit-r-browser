@@ -18,7 +18,6 @@ export default function Photo(props) {
         photo,
         direction,
         handleHover,
-        filterTitleText,
         clickHandler,
         top,
         left,
@@ -35,29 +34,26 @@ export default function Photo(props) {
     }
 
     const {
+        data,
         src,
         height,
         width,
         title,
     } = photo;
 
-    if(title?.toLowerCase()?.includes(filterTitleText?.toLowerCase())){
-        return (
-            <div
-                onMouseEnter={() => handleHover(index)}
-                onMouseLeave={() => handleHover(null)}
-                key={index}
-                onClick={() => clickHandler(index)}
-                className="image-container"
-            >
-                <LazyLoad height={height} width={width} once={true} offset={350}>
-                    <Image {...photo} alt={src} onError={addDefaultSrc}/>
-                </LazyLoad>
+    return (
+        <div
+            onMouseEnter={() => handleHover(index)}
+            onMouseLeave={() => handleHover(null)}
+            key={index}
+            onClick={() => clickHandler(data)}
+            className="image--container"
+        >
+            <LazyLoad height={height} width={width} once={true} offset={350}>
+                <Image {...photo} alt={src} onError={addDefaultSrc}/>
+            </LazyLoad>
 
-                <div className="top-center">{title}</div>
-            </div>
-        );
-    }
-
-    return null;
+            <div className="image--container--position--top-center">{title}</div>
+        </div>
+    );
 }
