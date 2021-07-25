@@ -49,7 +49,7 @@ export default function Photo(props) {
             onClick={() => clickHandler(data)}
             className="image--container"
         >
-            <LazyLoad height={height} width={width} once={true} offset={350}>
+            <LazyLoad height={height} width={width} once={true} offset={700}>
                 <Image {...photo} alt={src} onError={addDefaultSrc}/>
             </LazyLoad>
 

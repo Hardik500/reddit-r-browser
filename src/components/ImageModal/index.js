@@ -2,7 +2,6 @@ import './style.css'
 
 import { formatDistanceToNow } from 'date-fns'
 
-
 import Image from '../Helper/Image'
 
 export default function ImageModal({photo}){
@@ -16,7 +15,8 @@ export default function ImageModal({photo}){
         created,
         num_comments,
         score,
-        total_awards_received
+        total_awards_received,
+        permalink
     } = photo;
 
     const {
@@ -28,7 +28,7 @@ export default function ImageModal({photo}){
         <div className="modal">
             <div className="modal--container">
                 <Image src={src} thumbnail={thumbnail} title={title} width={width} height={height}/>
-                <h1 style={{textAlign: 'center'}}>{title}</h1>
+                <h1 style={{textAlign: 'center'}}><a href={`https://www.reddit.com${permalink}}/`} target="_blank" rel="noopener noreferrer">{title}</a></h1>
                 <h4 style={{width: '100%',textAlign: 'right'}}>- Posted by u/<a href={`https://www.reddit.com/user/${author}/`} target="_blank" rel="noopener noreferrer">{author}</a> {formatDistanceToNow(created * 1000)} ago</h4>
                 <div className="modal--info-container">
                     <p>Upvotes: {upvotes ?? 0}</p>
