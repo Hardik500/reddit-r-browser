@@ -2,3 +2,21 @@
     position: relative;
     text-align: center;
 }
+
+.top-center {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    border-radius: 2px;
+    background: rgba(0,0,0, 0.7);
+    max-height: 25px;
+    overflow: hidden;
+    color: #fff;
+    border-left: 2px solid rgba(255, 255, 255, 0.5);
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.top-center:hover {
+    overflow: visible;
+    max-height: 100%;
+}

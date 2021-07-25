@@ -1,4 +1,4 @@
-const shouldIncludeUrl = (url) => {
+export const shouldIncludeUrl = (url) => {
     const excludedDomains = ["imgur.com"]
 
     for(let i = 0; i < excludedDomains.length; i++){
@@ -23,7 +23,7 @@ export const photosReducer = (photos) => {
             title
         } = photo;
 
-        if(photo?.preview?.images[0]?.source && shouldIncludeUrl(src)){
+        if(photo?.preview?.images[0]?.source){
             const {
                 height,
                 width

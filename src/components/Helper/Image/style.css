@@ -1,5 +1,7 @@
 .image {
   cursor: pointer;
+  max-width: inherit;
+  height: auto;
 }
 
 .image:hover {
@@ -24,23 +26,4 @@
 .image-not-loaded {
   opacity: 1;
   display: "none"
-}
-
-.top-center {
-  position: absolute;
-  top: 0px;
-  width: 100%;
-  font-size: 16px;
-  border-radius: 2px;
-  background: #030303;
-  max-height: 25px;
-  overflow: hidden;
-  color: #fff;
-  border-left: 2px solid #fff;
-  border-right: 2px solid #fff;
-}
-
-.top-center:hover {
-  overflow: visible;
-  max-height: 100%;
 }

@@ -19,6 +19,7 @@ export default function Photo(props) {
         direction,
         handleHover,
         filterTitleText,
+        clickHandler,
         top,
         left,
     } = props;
@@ -33,7 +34,6 @@ export default function Photo(props) {
         container.top = top;
     }
 
-
     const {
         src,
         height,
@@ -47,10 +47,14 @@ export default function Photo(props) {
                 onMouseEnter={() => handleHover(index)}
                 onMouseLeave={() => handleHover(null)}
                 key={index}
+                onClick={() => clickHandler(index)}
+                className="image-container"
             >
-                <LazyLoad height={height} width={width} once={true} offset={350} className="image-container">
+                <LazyLoad height={height} width={width} once={true} offset={350}>
                     <Image {...photo} alt={src} onError={addDefaultSrc}/>
                 </LazyLoad>
+
+                <div className="top-center">{title}</div>
             </div>
         );
     }

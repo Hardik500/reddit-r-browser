@@ -1,0 +1,27 @@
+.modal {
+    background: white;
+    max-height: 80vh;
+    max-width: 80vw;
+    padding: 25px 40px;
+}
+
+.modal--container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: inherit;
+    flex-direction: column;
+}
+
+.modal--info-container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    flex-direction: row;
+}
+
+@media (max-width: 550px) {
+    .modal--info-container {
+        flex-direction: column;
+    }
+}

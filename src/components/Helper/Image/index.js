@@ -24,7 +24,6 @@ const Image = props => {
                 alt={props.alt}
                 src={props.src}
             />
-            <div className="top-center">{props.title}</div>
         </React.Fragment>
     );
 };
