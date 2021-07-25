@@ -4,10 +4,6 @@
   height: auto;
 }
 
-.image:hover {
-  opacity: 0.5;
-}
-
 .full {
   transition: opacity 400ms ease 250ms;
 }

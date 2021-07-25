@@ -24,8 +24,6 @@ export default function ImageModal({photo}){
         width
     } = photo?.preview?.images[0]?.source;
 
-    console.log(title);
-
     return (
         <div className="modal">
             <div className="modal--container">

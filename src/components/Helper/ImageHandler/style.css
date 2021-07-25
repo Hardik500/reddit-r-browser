@@ -1,6 +1,11 @@
 .image-container {
     position: relative;
     text-align: center;
+    transition: opacity 400ms ease 150ms;
+}
+
+.image-container:hover {
+    opacity: 0.75;
 }
 
 .top-center {
